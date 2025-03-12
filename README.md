@@ -38,9 +38,7 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
   - loss function = Categorical cross-entropy
   - batch size = 32
   - ran 1000 epochs, loss and accuracy were 8 × 10−7 and 1.000 for trained data and 0.0066 and 0.9982 for validation data
-  ### Categorical cross-entropy
-   From 3.13 of: https://www.deeplearningbook.org/contents/prob.html
-   
+  
   ### PyTorch Implementation Notes
    - Adam Optimizer = torch.optim.Adam(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False, *, foreach=None, maximize=False, capturable=False, differentiable=False, fused=None)
    - ReLU Function = torch.nn.ReLU(inplace=False)
