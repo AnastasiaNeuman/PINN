@@ -13,4 +13,10 @@ import numpy as np
 #here we are reading in a data file as a numpy array
 
 data1 = np.loadtxt("fp5chi10p9rhoSpecies0.dat", delimiter=' ', usecols=(0,1,2,3))
-print(data1)
+data2 = np.loadtxt("fp5chi10p9rhoSpecies1.dat", delimiter=' ', usecols=(0,1,2,3))
+
+#converting to tensor
+tensor1 = torch.tensor(data1)
+print(tensor1)
+tensor2 = torch.tensor(data2)
+print(tensor2)
