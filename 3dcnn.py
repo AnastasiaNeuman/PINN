@@ -54,6 +54,8 @@ labels_map = {
 #all the data should be lamellar, so we'll start with a basic label tensor of zeros
 labels = torch.zeros(12)
 
+#Adam optimizer needs to be added in here when you have more data to categorize
+
 #now let's try creating a custom dataset combining the tensors and labels
 dataset = TensorDataset(data, labels)
 #print("Dataset sample:", dataset[1])
@@ -75,20 +77,57 @@ for batch in dataloader:
 
 class NeuralNetwork(nn.Module):
 	def __init__(self):
-        	super().__init__()
+		super().__init__()
+		self.conv_pool_stack = nn.Sequential(
+
 #here were creating the sequential operation of 3D convolution layer -> 3D convolution layer -> pooling layer -> 3D layer -> 3D layer -> pooling layer
-	self.conv_pool_stack = nn.Sequential(
 #in Conv3D
 # in_channels = density, so 1		
-		in_channels = 1
 #16 = # filters, each filter creates one output channel, so output channels = 16
-		out_channels = 16
 #kernel size defined by depth, width, height
-#unsure what to use here, so we will just start with something
-		kernel_size = (3,3,3)
-		nn.Conv3D(in_channels, out_channels, kernel_size)
+#unsure what to use here, so we will just start with numbers in image
+			nn.Conv3d(1, 16, 30),
+#next we add a ReLU for activation
+			nn.ReLU(),
+#next we want to add another 3D convolution layer, again with 16 filters
+			nn.Conv3d(1, 16, (28, 28,28)),
+#and another ReLU for activation
+			nn.ReLU(),
+#next a max pooling layer, also with 16 filters
+			nn.MaxPool3d((14,14,14)),
+			nn.ReLU(),
+#apply a drop out w 0.4 drop rate
+			nn.Dropout(p=0.4),
+#convolution layer with 32 filters, 12x12x12
+			nn.Conv3d(1, 32, (12,12,12)),
+			nn.ReLU(),
+#convolution layer with 32 filters, 10x10x10
+			nn.Conv3d(1, 32, (10,10,10)),
+			nn.ReLU(),
+#max pooling layer, 32 filters, 5x5x5
+			nn.MaxPool3d((5,5,5,)),
+			nn.ReLU(),
+#another drop out with 0.4 drop rate
+			nn.Dropout(p=0.4),
+		)
+#next we define the flatten and dense portion
+		self.flatten_dense_stack = nn.Sequential(
+			nn.Flatten(),
+			nn.ReLU(),
+#512 linear number is from paper
+			nn.Linear(4000,512),
+			nn.ReLU(),
+#add another dropout here
+			nn.Dropout(p=0.4),
+#5 number is from paper
+			nn.Linear(512,5),
+		)
+#we don't end with another ReLU, we will use a softmax after we call the model to get the probabilities
 		
-
+	def forward(self, x):
+		x = self.conv_pool_stack(x)
+		logits = self.flatten_dense_stack(x)
+		return logits
 
 
 
