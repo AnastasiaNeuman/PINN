@@ -32,5 +32,11 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
   - dropout w/ 0.4 drop rate applied after each max-pooling layer + first dense layer to avoid overfitting
   - to increase amount of training data, they transform (xyz) data by exchanging axes i.e. (zxy), (yzx), etc
   - doubled data by using both A and B volume fraction from same metastable structure as separate data points
+  - used Tensorflow
+  - 80% of data = training; 20% = validation
+  - Adam optimizer used to associate volume fraction data with the categorized stable phase labels
+  - loss function = Categorical cross-entropy
+  - batch size = 32
+  - ran 1000 epochs, loss and accuracy were 8 × 10−7 and 1.000 for trained data and 0.0066 and 0.9982 for validation data
       
 
