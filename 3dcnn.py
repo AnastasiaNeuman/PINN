@@ -18,9 +18,6 @@ data2 = np.loadtxt("fp5chi10p9rhoSpecies1.dat", delimiter=' ', usecols=(0,1,2,3)
 #converting to tensor
 tensor1 = torch.tensor(data1)
 tensor2 = torch.tensor(data2)
-print(tensor1)
-size = tensor1.size()
-print(size)
 #transforming the data by exchanging axes to generate additional training data 
 #xyz = (0, 1, 2, 3)
 #zyx = (2, 1, 0, 3)
@@ -30,5 +27,14 @@ print(size)
 #yzx = (1, 2, 0, 3)
 #this can definitely be made a loop but lets do it the easy way for now 
 
-tensor11 = torch.permute(tensor1, (2, 1, 0, 3))
-print(tensor11)
+tensor11 = torch.index_select(tensor1, 1, torch.LongTensor([2,1,0,3]))
+tensor12 = torch.index_select(tensor1, 1, torch.LongTensor([2,0,1,3]))
+tensor13 = torch.index_select(tensor1, 1, torch.LongTensor([0,2,1,3]))
+tensor14 = torch.index_select(tensor1, 1, torch.LongTensor([1,0,2,3]))
+tensor15 = torch.index_select(tensor1, 1, torch.LongTensor([1,2,0,3]))
+
+tensor21 = torch.index_select(tensor2, 1, torch.LongTensor([2,1,0,3]))
+tensor22 = torch.index_select(tensor2, 1, torch.LongTensor([2,0,1,3]))
+tensor23 = torch.index_select(tensor2, 1, torch.LongTensor([0,2,1,3]))
+tensor24 = torch.index_select(tensor2, 1, torch.LongTensor([1,0,2,3]))
+tensor25 = torch.index_select(tensor2, 1, torch.LongTensor([1,2,0,3]))
