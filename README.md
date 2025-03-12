@@ -47,6 +47,10 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
    - Softmax Function = tf.nn.softmax
 
   ### PyTorch Implementation Notes
+   - Adam Optimizer = torch.optim.Adam(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False, *, foreach=None, maximize=False, capturable=False, differentiable=False, fused=None)
+   - ReLU Function = torch.nn.ReLU(inplace=False)
+   - Softmax Function = torch.nn.Softmax(dim=None)
+   - Cross Entropy Loss = torch.nn.CrossEntropyLoss(weight=None, size_average=None, ignore_index=-100, reduce=None, reduction='mean', label_smoothing=0.0)
    
    
   
