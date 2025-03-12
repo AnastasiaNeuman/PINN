@@ -49,7 +49,6 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
    - Max-Pooling Layer = torch.nn.MaxPool3d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)
    - Flatten Layer = torch.nn.Flatten(start_dim=1, end_dim=-1)
    - Dense Layer = torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
-   - Transform that exchanges axes of data = torch.permute(input, dims)
      
 # Implementation
 
@@ -62,5 +61,5 @@ Each row represents a grid point.
 
 Let's start by trying to read this data in to a NumPy ndarray and transform it in into a FloatTensor using ToTensor. 
 
-Then we can try transforming the axes of the data as they do in the paper with permute.  
+Then we can try transforming the axes of the data as they do in the paper.  
 
