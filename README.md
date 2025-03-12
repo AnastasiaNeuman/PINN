@@ -40,6 +40,14 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
   - ran 1000 epochs, loss and accuracy were 8 × 10−7 and 1.000 for trained data and 0.0066 and 0.9982 for validation data
   ### Categorical cross-entropy
    From 3.13 of: https://www.deeplearningbook.org/contents/prob.html
+
+  ### TensorFlow Implementation Notes
+   - Adam Optimizer = tf.keras.optimizers.Adam 
+   - ReLU Function = tf.keras.layers.ReLU (Rectified Linear Unit activation function layer) or (?) tf.keras.activations.relu (Applies the rectified linear unit activation function)
+   - Softmax Function = tf.nn.softmax
+
+  ### PyTorch Implementation Notes
+   
    
   
 
