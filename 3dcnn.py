@@ -56,10 +56,38 @@ labels = torch.zeros(12)
 
 #now let's try creating a custom dataset combining the tensors and labels
 dataset = TensorDataset(data, labels)
-print("Dataset sample:", dataset[1])
+#print("Dataset sample:", dataset[1])
 
+#next we will set up the DataLoader
+batch_size = 2
+dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=0)
 
+#testing dataloader
+'''
+print("DataLoader sample:")
+for batch in dataloader:
+    features, labels = batch
+    print("Features:", features)
+    print("Labels:", labels)
+'''
 
+#next, we can define our neural network class
+
+class NeuralNetwork(nn.Module):
+	def __init__(self):
+        	super().__init__()
+#here were creating the sequential operation of 3D convolution layer -> 3D convolution layer -> pooling layer -> 3D layer -> 3D layer -> pooling layer
+	self.conv_pool_stack = nn.Sequential(
+#in Conv3D
+# in_channels = density, so 1		
+		in_channels = 1
+#16 = # filters, each filter creates one output channel, so output channels = 16
+		out_channels = 16
+#kernel size defined by depth, width, height
+#unsure what to use here, so we will just start with something
+		kernel_size = (3,3,3)
+		nn.Conv3D(in_channels, out_channels, kernel_size)
+		
 
 
 
