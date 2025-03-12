@@ -40,17 +40,19 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
   - ran 1000 epochs, loss and accuracy were 8 × 10−7 and 1.000 for trained data and 0.0066 and 0.9982 for validation data
   ### Categorical cross-entropy
    From 3.13 of: https://www.deeplearningbook.org/contents/prob.html
-
-  ### TensorFlow Implementation Notes
-   - Adam Optimizer = tf.keras.optimizers.Adam 
-   - ReLU Function = tf.keras.layers.ReLU (Rectified Linear Unit activation function layer) or (?) tf.keras.activations.relu (Applies the rectified linear unit activation function)
-   - Softmax Function = tf.nn.softmax
-
+   
   ### PyTorch Implementation Notes
    - Adam Optimizer = torch.optim.Adam(params, lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0, amsgrad=False, *, foreach=None, maximize=False, capturable=False, differentiable=False, fused=None)
    - ReLU Function = torch.nn.ReLU(inplace=False)
    - Softmax Function = torch.nn.Softmax(dim=None)
    - Cross Entropy Loss = torch.nn.CrossEntropyLoss(weight=None, size_average=None, ignore_index=-100, reduce=None, reduction='mean', label_smoothing=0.0)
+   - Dropout with 0.4 drop out rate = torch.nn.Dropout(p=0.4, inplace=False) 
+   - 3D Convolutional Layer = torch.nn.Conv3d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros', device=None, dtype=None)
+   - Max-Pooling Layer = torch.nn.MaxPool3d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)
+   - Flatten Layer = torch.nn.Flatten(start_dim=1, end_dim=-1)
+   - Dense Layer = torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
+   - Transform that exchanges axes of data = torch.permute(input, dims)
+     
    
    
   
