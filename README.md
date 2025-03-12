@@ -38,6 +38,8 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
   - loss function = Categorical cross-entropy
   - batch size = 32
   - ran 1000 epochs, loss and accuracy were 8 × 10−7 and 1.000 for trained data and 0.0066 and 0.9982 for validation data
- ### Categorical cross-entropy
- From 3.13 of: https://www.deeplearningbook.org/contents/prob.html
+  ### Categorical cross-entropy
+   From 3.13 of: https://www.deeplearningbook.org/contents/prob.html
+   
+  
 
