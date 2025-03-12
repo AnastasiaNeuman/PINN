@@ -1,4 +1,4 @@
-## Sources:
+# Sources:
 
 https://doi.org/10.1103/PhysRevE.106.014503 \
 "Deep learning and inverse discovery of polymer self-consistent field theory inspired by physics-informed neural networks" \
@@ -16,9 +16,9 @@ https://doi.org/10.1016/j.commatsci.2020.110224 \
 "Deep learning model for predicting phase diagrams of block copolymers" \
 Computational Materials Science Volume 188, 15 February 2021, 110224
 
-## Notes:
+# Notes:
 
-# Deep learning model for predicting phase diagrams of block copolymers
+## Deep learning model for predicting phase diagrams of block copolymers
  - Uses 3DCNN
  - Trained on 3000 metastable structures
  - Inputs were sets of volume fractions of each segment type in each 32 × 32 × 32 grid voxel (obtained from SCFT calculation) and...
@@ -38,5 +38,6 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
   - loss function = Categorical cross-entropy
   - batch size = 32
   - ran 1000 epochs, loss and accuracy were 8 × 10−7 and 1.000 for trained data and 0.0066 and 0.9982 for validation data
-      
+ ### Categorical cross-entropy
+ From 3.13 of: https://www.deeplearningbook.org/contents/prob.html
 
