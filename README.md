@@ -51,7 +51,8 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
    - Dense Layer = torch.nn.Linear(in_features, out_features, bias=True, device=None, dtype=None)
    - Transform that exchanges axes of data = torch.permute(input, dims)
      
-   
+ ## Phase diagrams of polymer-containing liquid mixtures with a theory-embedded neural network
+  - 
    
   
 
