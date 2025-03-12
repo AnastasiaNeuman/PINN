@@ -54,5 +54,16 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
  ## Phase diagrams of polymer-containing liquid mixtures with a theory-embedded neural network
   - 
    
-  
+# Implementation
+
+## 3D CNN
+
+In 3dcnn.py, we will attempt to read in some 3D BCP volume fraction data we have generated previously through SCFT. 
+
+This data exists in a text file with 4 columns x,y,z,volume fraction. 
+Each row represents a grid point. 
+
+Let's start by trying to read this data in to a NumPy ndarray into a FloatTensor using ToTensor. 
+
+Then we can try transforming the axes of the data as they do in the paper with permute.  
 
