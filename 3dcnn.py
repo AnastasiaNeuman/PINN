@@ -9,17 +9,6 @@ from torch.utils.data import TensorDataset, DataLoader
 from torchvision.transforms import ToTensor
 import numpy as np
 
-#here we are reading in a data file as a set of numpy arrays
-
-x,y,z,rho= np.loadtxt("fp5chi10p9rhoSpecies0.dat",unpack='True', delimiter=' ',dtype=np.float32, usecols=(0,1,2,3))
-x2,y2,z2,rho2 = np.loadtxt("fp5chi10p9rhoSpecies1.dat",unpack='True',dtype=np.float32, delimiter=' ', usecols=(0,1,2,3))
-
-maxX = np.max(x)
-maxY = np.max(y)
-maxZ = np.max(z)
-
-#we want to convert the data onto a 32x32x32 grid 
-#let's bin the data and average 
 
 #converting to tensor
 tensor1 = torch.tensor(data1)
