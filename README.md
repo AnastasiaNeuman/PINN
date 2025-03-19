@@ -54,12 +54,7 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
 
 ## 3D CNN
 
-In 3dcnn.py, we will attempt to read in some 3D BCP volume fraction data we have generated previously through SCFT. 
+In 3dcnn.py, we will attempt to read in some 3D BCP volume fraction data we have generated previously through SCFT and use this as our training data. 
 
-This data exists in a text file with 4 columns: x,y,z,volume fraction. 
-Each row represents a grid point. 
-
-Let's start by trying to read this data in to a NumPy ndarray and transform it in into a FloatTensor using ToTensor. 
-
-Then we can try transforming the axes of the data as they do in the paper.  
+We will then implement a model like that in the paper. 
 
