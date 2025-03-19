@@ -9,11 +9,34 @@ from torch.utils.data import TensorDataset, DataLoader
 from torchvision.transforms import ToTensor
 import numpy as np
 
-#here we are reading in a data file as a numpy array
+#here we are reading in a data file as a set of numpy arrays
 
-data1 = np.loadtxt("fp5chi10p9rhoSpecies0.dat", delimiter=' ', usecols=(0,1,2,3))
-data2 = np.loadtxt("fp5chi10p9rhoSpecies1.dat", delimiter=' ', usecols=(0,1,2,3))
+x,y,z,rho= np.loadtxt("fp5chi10p9rhoSpecies0.dat",unpack='True', delimiter=' ',dtype=np.float32, usecols=(0,1,2,3))
+x2,y2,z2,rho2 = np.loadtxt("fp5chi10p9rhoSpecies1.dat",unpack='True',dtype=np.float32, delimiter=' ', usecols=(0,1,2,3))
 
+maxX = np.max(x)
+maxY = np.max(y)
+maxZ = np.max(z)
+
+#we want to convert the data onto a 32x32x32 grid 
+height, width, depth = 32, 32, 32
+channels = 1
+gpX = maxX/width
+gpY = maxY/height
+gpZ = maxZ/depth
+
+for i in range(1): #loop over gridpoints
+	xmin = i*gpX
+	xmax = (i+1)*gpX
+	lx = [idx for idx,value in enumerate(x) if xmin<value<xmax] 	
+	ymin = i*gpY
+	ymax = (i+1)*gpY
+	ly = [idx for idx,value in enumerate(y) if ymin<value<ymax] 	
+	zmin = i*gpZ
+	zmax = (i+1)*gpZ
+	lz = [idx for idx,value in enumerate(z) if zmin<value<zmax]
+	rhoval = [value for idx,value in enumerate(rho) if idx in lx and idx in ly and idx in lz]
+	print(rhoval) 	
 #converting to tensor
 tensor1 = torch.tensor(data1)
 tensor2 = torch.tensor(data2)
@@ -40,6 +63,8 @@ tensor25 = torch.index_select(tensor2, 1, torch.LongTensor([1,2,0,3]))
 
 #combine tensors into one data tensor
 data = torch.stack((tensor1, tensor11, tensor12, tensor13, tensor14, tensor15, tensor2, tensor21, tensor22, tensor23, tensor24, tensor25))
+
+
 #now we have a small set of data to start as a training set
 #next we have to create our labels
 
@@ -63,15 +88,6 @@ dataset = TensorDataset(data, labels)
 #next we will set up the DataLoader
 batch_size = 2
 dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True, num_workers=0)
-
-#testing dataloader
-'''
-print("DataLoader sample:")
-for batch in dataloader:
-    features, labels = batch
-    print("Features:", features)
-    print("Labels:", labels)
-'''
 
 #set device 
 device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
@@ -181,3 +197,12 @@ def test_loop(dataloader, model, loss_fn):
     test_loss /= num_batches
     correct /= size
     print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
+
+#running training and tetsing loops
+epochs = 10
+for t in range(epochs):
+    print(f"Epoch {t+1}\n-------------------------------")
+    train_loop(dataloader, model, loss_fn, optimizer)
+    test_loop(dataloader, model, loss_fn)
+print("Done!")
+
