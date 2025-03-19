@@ -73,6 +73,9 @@ for batch in dataloader:
     print("Labels:", labels)
 '''
 
+#set device 
+device = torch.accelerator.current_accelerator().type if torch.accelerator.is_available() else "cpu"
+print(f"Using {device} device")
 #next, we can define our neural network class
 
 class NeuralNetwork(nn.Module):
@@ -129,5 +132,7 @@ class NeuralNetwork(nn.Module):
 		logits = self.flatten_dense_stack(x)
 		return logits
 
-
+#print structure of model
+model = NeuralNetwork().to(device)
+print(model)
 
