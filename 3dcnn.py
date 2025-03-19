@@ -19,24 +19,8 @@ maxY = np.max(y)
 maxZ = np.max(z)
 
 #we want to convert the data onto a 32x32x32 grid 
-height, width, depth = 32, 32, 32
-channels = 1
-gpX = maxX/width
-gpY = maxY/height
-gpZ = maxZ/depth
+#let's bin the data and average 
 
-for i in range(1): #loop over gridpoints
-	xmin = i*gpX
-	xmax = (i+1)*gpX
-	lx = [idx for idx,value in enumerate(x) if xmin<value<xmax] 	
-	ymin = i*gpY
-	ymax = (i+1)*gpY
-	ly = [idx for idx,value in enumerate(y) if ymin<value<ymax] 	
-	zmin = i*gpZ
-	zmax = (i+1)*gpZ
-	lz = [idx for idx,value in enumerate(z) if zmin<value<zmax]
-	rhoval = [value for idx,value in enumerate(rho) if idx in lx and idx in ly and idx in lz]
-	print(rhoval) 	
 #converting to tensor
 tensor1 = torch.tensor(data1)
 tensor2 = torch.tensor(data2)
