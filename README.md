@@ -60,6 +60,6 @@ We will use pytorch.
 
 We will then implement a model like that in "Deep learning model for predicting phase diagrams of block copolymers". 
 
-## 3D CNN TF
+## TF 3D CNN 
 
-The same as 3dcnn, but using tensorflow rather than pytorch. 
+tf3dcnn.py is the same as 3dcnn.py, but implementing the model using tensorflow rather than pytorch. 
