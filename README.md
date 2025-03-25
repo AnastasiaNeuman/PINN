@@ -54,7 +54,12 @@ Computational Materials Science Volume 188, 15 February 2021, 110224
 
 ## 3D CNN
 
-In 3dcnn.py, we will attempt to read in some 3D BCP volume fraction data we have generated previously through SCFT and use this as our training data. 
+In 3dcnn.py, we will attempt to read in some 3D BCP volume fraction data we have generated previously through SCFT and use this as our training data.
 
-We will then implement a model like that in the paper. 
+We will use pytorch.  
 
+We will then implement a model like that in "Deep learning model for predicting phase diagrams of block copolymers". 
+
+## 3D CNN TF
+
+The same as 3dcnn, but using tensorflow rather than pytorch. 
